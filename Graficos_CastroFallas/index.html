@@ -1,0 +1,4652 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de datos con ChartJS</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="updateChart(),updateChart2(), updateChart3(), updateChart4(), updateChart5(), updateChart6(), updateChart7(), updateChart8(), updateChart9(), updateChart10(), setTimeout(myFunction, 300000)">
+    <main>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <hr>
+                    <h1 style="justify-content: center;">CASOS ACTIVOS</h1>
+                    <hr>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1>Casos Activos Sofía Sánchez</h1>
+                    <hr>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Origen</h2>
+                            <canvas id="modelsChart" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Status</h2>
+                            <canvas id="modelsChart2" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1>Casos Activos Andrea Monge</h1>
+                    <hr>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Origen</h2>
+                            <canvas id="modelsChart3" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Status</h2>
+                            <canvas id="modelsChart4" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1>Casos Activos Ashley Herrera</h1>
+                    <hr>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Origen</h2>
+                            <canvas id="modelsChart5" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Status</h2>
+                            <canvas id="modelsChart6" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1>Casos Activos Danna Salas</h1>
+                    <hr>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Origen</h2>
+                            <canvas id="modelsChart7" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Status</h2>
+                            <canvas id="modelsChart8" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1 style="justify-content: center;">CERTIFICADOS RE-EXPORTACION</h1>
+                    <hr>
+                </div>
+                <div class="carousel-item">
+                    <hr>
+                    <h1>Certificados Re-Exportación</h1>
+                    <hr>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Pre-estado</h2>
+                            <canvas id="certificadoChart" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Casos por Status Certificado</h2>
+                            <canvas id="certificadoChart2" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <!--<div class="carousel-item">
+                    <hr>
+                    <h1 style="justify-content: center;">COLOCACIONES</h1>
+                    <hr>
+                </div>
+                <div class="carousel-item">
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Colocaciones CRC HOY</h2>
+                            <canvas id="colocacionesChart" height="50%"></canvas>
+                        </figure>
+                    </section>
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Colocaciones CRC</h2>
+                            <canvas id="colocacionesChart2" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>
+                <div class="carousel-item">
+                    <section class="cols-1">
+                        <figure>
+                            <h2>Movimiento Panamá to CRC</h2>
+                            <canvas id="colocacionesChart3" height="50%"></canvas>
+                        </figure>
+                    </section>
+                </div>-->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function myFunction() {
+            updateChart();
+            updateChart2(); 
+            updateChart3(); 
+            updateChart4(); 
+            updateChart5(); 
+            updateChart6(); 
+            updateChart7(); 
+            updateChart8();
+            updateChart9();
+            updateChart10();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.reload
+        //ORIGEN
+        //fetch block
+        function updateChart() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            var total15 = 0;
+            var total16 = 0;
+            var total17 = 0;
+            var total18 = 0;
+            var total19 = 0;
+            var total20 = 0;
+            var total21 = 0;
+            var total22 = 0;
+            var total23 = 0;
+            var total24 = 0;
+            var total25 = 0;
+            var total26 = 0;
+            var total27 = 0;
+            var total28 = 0;
+            var total29 = 0;
+            var total30 = 0;
+            var total31 = 0;
+            var total32 = 0;
+            var total33 = 0;
+            var total34 = 0;
+            var total35 = 0;
+            var total36 = 0;
+            var total37 = 0;
+            let datos = [];
+            async function fetchData() {
+                //direccion de la api
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenSS';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const origen = datapoints.value.map(function (index) {
+                    return index.new_origen;
+                });
+                for (i = 0; i < origen.length; i++) {
+                    a.push(origen[i].toString())
+                }
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var o0 = [];
+                    var o1 = [];
+                    var o2 = [];
+                    var o3 = [];
+                    var o4 = [];
+                    var o5 = [];
+                    var o6 = [];
+                    var o7 = [];
+                    var o8 = [];
+                    var o9 = [];
+                    var o10 = [];
+                    var o11 = [];
+                    var o12 = [];
+                    var o13 = [];
+                    var o14 = [];
+                    var o15 = [];
+                    var o16 = [];
+                    var o17 = [];
+                    var o18 = [];
+                    var o19 = [];
+                    var o20 = [];
+                    var o21 = [];
+                    var o22 = [];
+                    var o23 = [];
+                    var o24 = [];
+                    var o25 = [];
+                    var o26 = [];
+                    var o27 = [];
+                    var o28 = [];
+                    var o29 = [];
+                    var o30 = [];
+                    var o31 = [];
+                    var o32 = [];
+                    var o33 = [];
+                    var o34 = [];
+                    var o35 = [];
+                    var o36 = [];
+                    var o37 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            o0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            o1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            o2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            o3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            o4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            o5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            o6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            o7.push(b);
+                            break;
+                        case '100000008':
+                            b++;
+                            o8.push(b);
+                            break;
+                        case '100000009':
+                            b++;
+                            o9.push(b);
+                            break;
+                        case '100000010':
+                            b++;
+                            o10.push(b);
+                            break;
+                        case '100000011':
+                            b++;
+                            o11.push(b);
+                            break;
+                        case '100000012':
+                            b++;
+                            o12.push(b);
+                            break;
+                        case '100000013':
+                            b++;
+                            o13.push(b);
+                            break;
+                        case '100000014':
+                            b++;
+                            o14.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            o15.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            o16.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            o17.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            o18.push(b);
+                            break;
+                        case '100000019':
+                            b++;
+                            o19.push(b);
+                            break;
+                        case '100000020':
+                            b++;
+                            o20.push(b);
+                            break;
+                        case '100000021':
+                            b++;
+                            o21.push(b);
+                            break;
+                        case '100000022':
+                            b++;
+                            o22.push(b);
+                            break;
+                        case '100000023':
+                            b++;
+                            o23.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            o24.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            o25.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            o26.push(b);
+                            break;
+                        case '100000027':
+                            b++;
+                            o27.push(b);
+                            break;
+                        case '100000028':
+                            b++;
+                            o28.push(b);
+                            break;
+                        case '100000029':
+                            b++;
+                            o29.push(b);
+                            break;
+                        case '100000030':
+                            b++;
+                            o30.push(b);
+                            break;
+                        case '100000031':
+                            b++;
+                            o31.push(b);
+                            break;
+                        case '100000032':
+                            b++;
+                            o32.push(b);
+                            break;
+                        case '100000033':
+                            b++;
+                            o33.push(b);
+                            break;
+                        case '100000034':
+                            b++;
+                            o34.push(b);
+                            break;
+                        case '100000035':
+                            b++;
+                            o35.push(b);
+                            break;
+                        case '100000036':
+                            b++;
+                            o36.push(b);
+                            break;
+                        case '100000037':
+                            b++;
+                            o37.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= o0.length; i++) {
+                        if (o0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += o0[i];
+                        }
+                    }
+                    for (var i = 0; i <= o1.length; i++) {
+                        if (o1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += o1[i];
+                        }
+                    }
+                    for (var i = 0; i <= o2.length; i++) {
+                        if (o2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += o2[i];
+                        }
+                    }
+                    for (var i = 0; i <= o3.length; i++) {
+                        if (o3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += o3[i];
+                        }
+                    }
+                    for (var i = 0; i <= o4.length; i++) {
+                        if (o4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += o4[i];
+                        }
+                    }
+                    for (var i = 0; i <= o5.length; i++) {
+                        if (o5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += o5[i];
+                        }
+                    }
+                    for (var i = 0; i <= o6.length; i++) {
+                        if (o6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += o6[i];
+                        }
+                    }
+                    for (var i = 0; i <= o7.length; i++) {
+                        if (o7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += o7[i];
+                        }
+                    }
+                    for (var i = 0; i <= o8.length; i++) {
+                        if (o8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += o8[i];
+                        }
+                    }
+                    for (var i = 0; i <= o9.length; i++) {
+                        if (o9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += o9[i];
+                        }
+                    }
+                    for (var i = 0; i <= o10.length; i++) {
+                        if (o10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += o10[i];
+                        }
+                    }
+                    for (var i = 0; i <= o11.length; i++) {
+                        if (o11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += o11[i];
+                        }
+                    }
+                    for (var i = 0; i <= o12.length; i++) {
+                        if (o12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += o12[i];
+                        }
+                    }
+                    for (var i = 0; i <= o13.length; i++) {
+                        if (o13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += o13[i];
+                        }
+                    }
+                    for (var i = 0; i <= o14.length; i++) {
+                        if (o14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += o14[i];
+                        }
+                    }
+                    for (var i = 0; i <= o15.length; i++) {
+                        if (o15[i] == null) {
+                            total15 += 0;
+                        }
+                        else {
+                            total15 += o15[i];
+                        }
+                    }
+                    for (var i = 0; i <= o16.length; i++) {
+                        if (o16[i] == null) {
+                            total16 += 0;
+                        }
+                        else {
+                            total16 += o16[i];
+                        }
+                    }
+                    for (var i = 0; i <= o17.length; i++) {
+                        if (o17[i] == null) {
+                            total17 += 0;
+                        }
+                        else {
+                            total17 += o17[i];
+                        }
+                    }
+                    for (var i = 0; i <= o18.length; i++) {
+                        if (o18[i] == null) {
+                            total18 += 0;
+                        }
+                        else {
+                            total18 += o18[i];
+                        }
+                    }
+                    for (var i = 0; i <= o19.length; i++) {
+                        if (o19[i] == null) {
+                            total19 += 0;
+                        }
+                        else {
+                            total19 += o19[i];
+                        }
+                    }
+                    for (var i = 0; i <= o20.length; i++) {
+                        if (o20[i] == null) {
+                            total20 += 0;
+                        }
+                        else {
+                            total20 += o20[i];
+                        }
+                    }
+                    for (var i = 0; i <= o21.length; i++) {
+                        if (o21[i] == null) {
+                            total21 += 0;
+                        }
+                        else {
+                            total21 += o21[i];
+                        }
+                    }
+                    for (var i = 0; i <= o22.length; i++) {
+                        if (o22[i] == null) {
+                            total22 += 0;
+                        }
+                        else {
+                            total22 += o22[i];
+                        }
+                    }
+                    for (var i = 0; i <= o23.length; i++) {
+                        if (o23[i] == null) {
+                            total23 += 0;
+                        }
+                        else {
+                            total23 += o23[i];
+                        }
+                    }
+                    for (var i = 0; i <= o24.length; i++) {
+                        if (o24[i] == null) {
+                            total24 += 0;
+                        }
+                        else {
+                            total24 += o24[i];
+                        }
+                    }
+                    for (var i = 0; i <= o25.length; i++) {
+                        if (o25[i] == null) {
+                            total25 += 0;
+                        }
+                        else {
+                            total25 += o25[i];
+                        }
+                    }
+                    for (var i = 0; i <= o26.length; i++) {
+                        if (o26[i] == null) {
+                            total26 += 0;
+                        }
+                        else {
+                            total26 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o27.length; i++) {
+                        if (o27[i] == null) {
+                            total27 += 0;
+                        }
+                        else {
+                            total27 += o27[i];
+                        }
+                    }
+                    for (var i = 0; i <= o28.length; i++) {
+                        if (o28[i] == null) {
+                            total28 += 0;
+                        }
+                        else {
+                            total28 += o28[i];
+                        }
+                    }
+                    for (var i = 0; i <= o29.length; i++) {
+                        if (o29[i] == null) {
+                            total29 += 0;
+                        }
+                        else {
+                            total29 += o29[i];
+                        }
+                    }
+                    for (var i = 0; i <= o30.length; i++) {
+                        if (o30[i] == null) {
+                            total30 += 0;
+                        }
+                        else {
+                            total30 += o30[i];
+                        }
+                    }
+                    for (var i = 0; i <= o31.length; i++) {
+                        if (o31[i] == null) {
+                            total31 += 0;
+                        }
+                        else {
+                            total31 += o31[i];
+                        }
+                    }
+                    for (var i = 0; i <= o32.length; i++) {
+                        if (o32[i] == null) {
+                            total32 += 0;
+                        }
+                        else {
+                            total32 += o32[i];
+                        }
+                    }
+                    for (var i = 0; i <= o33.length; i++) {
+                        if (o33[i] == null) {
+                            total33 += 0;
+                        }
+                        else {
+                            total33 += o33[i];
+                        }
+                    }
+                    for (var i = 0; i <= o34.length; i++) {
+                        if (o34[i] == null) {
+                            total34 += 0;
+                        }
+                        else {
+                            total34 += o34[i];
+                        }
+                    }
+                    for (var i = 0; i <= o35.length; i++) {
+                        if (o35[i] == null) {
+                            total35 += 0;
+                        }
+                        else {
+                            total35 += o35[i];
+                        }
+                    }
+                    for (var i = 0; i <= o36.length; i++) {
+                        if (o36[i] == null) {
+                            total36 += 0;
+                        }
+                        else {
+                            total36 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o37.length; i++) {
+                        if (o37[i] == null) {
+                            total37 += 0;
+                        }
+                        else {
+                            total37 += o37[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14, total15, total16, total17, total18, total19, total20, total21, total22, total23, total24, total25, total26, total27, total28, total29, total30, total31, total32, total33, total34, total35, total36, total37)
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart.config.data.datasets[0].data = datos;
+                myChart.update();
+            });
+        }
+        // setup 
+        const data = {
+            labels: ['USA', 'China', 'Guatemala', 'Thailandia', 'India', 'Ecuador', 'Chile', 'Colombia', 'Costa Rica', 'México', 'Italia', 'Korea', 'Turquía', 'España', 'San José, Costa Rica', 'Vietnam', 'Holanda', 'Canadá', 'Panamá', 'El Salvador', 'Alemania', 'Nicaragua', 'Portugal', 'Francia', 'Perú', 'Honduras', 'Sudáfrica', 'Brasil', 'Taiwan', 'Polonia', 'Emiratos Arabes', 'Suiza', 'Japón', 'Argentina', 'Indonesia', 'Bangladesh', 'Barbados'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart = new Chart(
+            document.getElementById('modelsChart'),
+            config
+        );
+        //ORIGEN
+
+        //STATUS
+        //fetch block
+        function updateChart2() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenSS';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_preestado2;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart2.config.data.datasets[0].data = datos;
+                myChart2.update();
+            });
+        }
+        // setup 
+        const data2 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config2 = {
+            type: 'bar',
+            data: data2,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart2 = new Chart(
+            document.getElementById('modelsChart2'),
+            config2
+        );
+        //STATUS
+    </script>
+    <script>
+        window.reload
+        //ORIGEN
+        //fetch block
+        function updateChart3() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            var total15 = 0;
+            var total16 = 0;
+            var total17 = 0;
+            var total18 = 0;
+            var total19 = 0;
+            var total20 = 0;
+            var total21 = 0;
+            var total22 = 0;
+            var total23 = 0;
+            var total24 = 0;
+            var total25 = 0;
+            var total26 = 0;
+            var total27 = 0;
+            var total28 = 0;
+            var total29 = 0;
+            var total30 = 0;
+            var total31 = 0;
+            var total32 = 0;
+            var total33 = 0;
+            var total34 = 0;
+            var total35 = 0;
+            var total36 = 0;
+            var total37 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenAM';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const origen = datapoints.value.map(function (index) {
+                    return index.new_origen;
+                });
+                for (i = 0; i < origen.length; i++) {
+                    a.push(origen[i].toString())
+                }
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var o0 = [];
+                    var o1 = [];
+                    var o2 = [];
+                    var o3 = [];
+                    var o4 = [];
+                    var o5 = [];
+                    var o6 = [];
+                    var o7 = [];
+                    var o8 = [];
+                    var o9 = [];
+                    var o10 = [];
+                    var o11 = [];
+                    var o12 = [];
+                    var o13 = [];
+                    var o14 = [];
+                    var o15 = [];
+                    var o16 = [];
+                    var o17 = [];
+                    var o18 = [];
+                    var o19 = [];
+                    var o20 = [];
+                    var o21 = [];
+                    var o22 = [];
+                    var o23 = [];
+                    var o24 = [];
+                    var o25 = [];
+                    var o26 = [];
+                    var o27 = [];
+                    var o28 = [];
+                    var o29 = [];
+                    var o30 = [];
+                    var o31 = [];
+                    var o32 = [];
+                    var o33 = [];
+                    var o34 = [];
+                    var o35 = [];
+                    var o36 = [];
+                    var o37 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            o0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            o1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            o2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            o3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            o4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            o5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            o6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            o7.push(b);
+                            break;
+                        case '100000008':
+                            b++;
+                            o8.push(b);
+                            break;
+                        case '100000009':
+                            b++;
+                            o9.push(b);
+                            break;
+                        case '100000010':
+                            b++;
+                            o10.push(b);
+                            break;
+                        case '100000011':
+                            b++;
+                            o11.push(b);
+                            break;
+                        case '100000012':
+                            b++;
+                            o12.push(b);
+                            break;
+                        case '100000013':
+                            b++;
+                            o13.push(b);
+                            break;
+                        case '100000014':
+                            b++;
+                            o14.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            o15.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            o16.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            o17.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            o18.push(b);
+                            break;
+                        case '100000019':
+                            b++;
+                            o19.push(b);
+                            break;
+                        case '100000020':
+                            b++;
+                            o20.push(b);
+                            break;
+                        case '100000021':
+                            b++;
+                            o21.push(b);
+                            break;
+                        case '100000022':
+                            b++;
+                            o22.push(b);
+                            break;
+                        case '100000023':
+                            b++;
+                            o23.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            o24.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            o25.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            o26.push(b);
+                            break;
+                        case '100000027':
+                            b++;
+                            o27.push(b);
+                            break;
+                        case '100000028':
+                            b++;
+                            o28.push(b);
+                            break;
+                        case '100000029':
+                            b++;
+                            o29.push(b);
+                            break;
+                        case '100000030':
+                            b++;
+                            o30.push(b);
+                            break;
+                        case '100000031':
+                            b++;
+                            o31.push(b);
+                            break;
+                        case '100000032':
+                            b++;
+                            o32.push(b);
+                            break;
+                        case '100000033':
+                            b++;
+                            o33.push(b);
+                            break;
+                        case '100000034':
+                            b++;
+                            o34.push(b);
+                            break;
+                        case '100000035':
+                            b++;
+                            o35.push(b);
+                            break;
+                        case '100000036':
+                            b++;
+                            o36.push(b);
+                            break;
+                        case '100000037':
+                            b++;
+                            o37.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= o0.length; i++) {
+                        if (o0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += o0[i];
+                        }
+                    }
+                    for (var i = 0; i <= o1.length; i++) {
+                        if (o1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += o1[i];
+                        }
+                    }
+                    for (var i = 0; i <= o2.length; i++) {
+                        if (o2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += o2[i];
+                        }
+                    }
+                    for (var i = 0; i <= o3.length; i++) {
+                        if (o3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += o3[i];
+                        }
+                    }
+                    for (var i = 0; i <= o4.length; i++) {
+                        if (o4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += o4[i];
+                        }
+                    }
+                    for (var i = 0; i <= o5.length; i++) {
+                        if (o5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += o5[i];
+                        }
+                    }
+                    for (var i = 0; i <= o6.length; i++) {
+                        if (o6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += o6[i];
+                        }
+                    }
+                    for (var i = 0; i <= o7.length; i++) {
+                        if (o7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += o7[i];
+                        }
+                    }
+                    for (var i = 0; i <= o8.length; i++) {
+                        if (o8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += o8[i];
+                        }
+                    }
+                    for (var i = 0; i <= o9.length; i++) {
+                        if (o9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += o9[i];
+                        }
+                    }
+                    for (var i = 0; i <= o10.length; i++) {
+                        if (o10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += o10[i];
+                        }
+                    }
+                    for (var i = 0; i <= o11.length; i++) {
+                        if (o11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += o11[i];
+                        }
+                    }
+                    for (var i = 0; i <= o12.length; i++) {
+                        if (o12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += o12[i];
+                        }
+                    }
+                    for (var i = 0; i <= o13.length; i++) {
+                        if (o13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += o13[i];
+                        }
+                    }
+                    for (var i = 0; i <= o14.length; i++) {
+                        if (o14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += o14[i];
+                        }
+                    }
+                    for (var i = 0; i <= o15.length; i++) {
+                        if (o15[i] == null) {
+                            total15 += 0;
+                        }
+                        else {
+                            total15 += o15[i];
+                        }
+                    }
+                    for (var i = 0; i <= o16.length; i++) {
+                        if (o16[i] == null) {
+                            total16 += 0;
+                        }
+                        else {
+                            total16 += o16[i];
+                        }
+                    }
+                    for (var i = 0; i <= o17.length; i++) {
+                        if (o17[i] == null) {
+                            total17 += 0;
+                        }
+                        else {
+                            total17 += o17[i];
+                        }
+                    }
+                    for (var i = 0; i <= o18.length; i++) {
+                        if (o18[i] == null) {
+                            total18 += 0;
+                        }
+                        else {
+                            total18 += o18[i];
+                        }
+                    }
+                    for (var i = 0; i <= o19.length; i++) {
+                        if (o19[i] == null) {
+                            total19 += 0;
+                        }
+                        else {
+                            total19 += o19[i];
+                        }
+                    }
+                    for (var i = 0; i <= o20.length; i++) {
+                        if (o20[i] == null) {
+                            total20 += 0;
+                        }
+                        else {
+                            total20 += o20[i];
+                        }
+                    }
+                    for (var i = 0; i <= o21.length; i++) {
+                        if (o21[i] == null) {
+                            total21 += 0;
+                        }
+                        else {
+                            total21 += o21[i];
+                        }
+                    }
+                    for (var i = 0; i <= o22.length; i++) {
+                        if (o22[i] == null) {
+                            total22 += 0;
+                        }
+                        else {
+                            total22 += o22[i];
+                        }
+                    }
+                    for (var i = 0; i <= o23.length; i++) {
+                        if (o23[i] == null) {
+                            total23 += 0;
+                        }
+                        else {
+                            total23 += o23[i];
+                        }
+                    }
+                    for (var i = 0; i <= o24.length; i++) {
+                        if (o24[i] == null) {
+                            total24 += 0;
+                        }
+                        else {
+                            total24 += o24[i];
+                        }
+                    }
+                    for (var i = 0; i <= o25.length; i++) {
+                        if (o25[i] == null) {
+                            total25 += 0;
+                        }
+                        else {
+                            total25 += o25[i];
+                        }
+                    }
+                    for (var i = 0; i <= o26.length; i++) {
+                        if (o26[i] == null) {
+                            total26 += 0;
+                        }
+                        else {
+                            total26 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o27.length; i++) {
+                        if (o27[i] == null) {
+                            total27 += 0;
+                        }
+                        else {
+                            total27 += o27[i];
+                        }
+                    }
+                    for (var i = 0; i <= o28.length; i++) {
+                        if (o28[i] == null) {
+                            total28 += 0;
+                        }
+                        else {
+                            total28 += o28[i];
+                        }
+                    }
+                    for (var i = 0; i <= o29.length; i++) {
+                        if (o29[i] == null) {
+                            total29 += 0;
+                        }
+                        else {
+                            total29 += o29[i];
+                        }
+                    }
+                    for (var i = 0; i <= o30.length; i++) {
+                        if (o30[i] == null) {
+                            total30 += 0;
+                        }
+                        else {
+                            total30 += o30[i];
+                        }
+                    }
+                    for (var i = 0; i <= o31.length; i++) {
+                        if (o31[i] == null) {
+                            total31 += 0;
+                        }
+                        else {
+                            total31 += o31[i];
+                        }
+                    }
+                    for (var i = 0; i <= o32.length; i++) {
+                        if (o32[i] == null) {
+                            total32 += 0;
+                        }
+                        else {
+                            total32 += o32[i];
+                        }
+                    }
+                    for (var i = 0; i <= o33.length; i++) {
+                        if (o33[i] == null) {
+                            total33 += 0;
+                        }
+                        else {
+                            total33 += o33[i];
+                        }
+                    }
+                    for (var i = 0; i <= o34.length; i++) {
+                        if (o34[i] == null) {
+                            total34 += 0;
+                        }
+                        else {
+                            total34 += o34[i];
+                        }
+                    }
+                    for (var i = 0; i <= o35.length; i++) {
+                        if (o35[i] == null) {
+                            total35 += 0;
+                        }
+                        else {
+                            total35 += o35[i];
+                        }
+                    }
+                    for (var i = 0; i <= o36.length; i++) {
+                        if (o36[i] == null) {
+                            total36 += 0;
+                        }
+                        else {
+                            total36 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o37.length; i++) {
+                        if (o37[i] == null) {
+                            total37 += 0;
+                        }
+                        else {
+                            total37 += o37[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14, total15, total16, total17, total18, total19, total20, total21, total22, total23, total24, total25, total26, total27, total28, total29, total30, total31, total32, total33, total34, total35, total36, total37)
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart3.config.data.datasets[0].data = datos;
+                myChart3.update();
+            });
+        }
+        // setup 
+        const data3 = {
+            labels: ['USA', 'China', 'Guatemala', 'Thailandia', 'India', 'Ecuador', 'Chile', 'Colombia', 'Costa Rica', 'México', 'Italia', 'Korea', 'Turquía', 'España', 'San José, Costa Rica', 'Vietnam', 'Holanda', 'Canadá', 'Panamá', 'El Salvador', 'Alemania', 'Nicaragua', 'Portugal', 'Francia', 'Perú', 'Honduras', 'Sudáfrica', 'Brasil', 'Taiwan', 'Polonia', 'Emiratos Arabes', 'Suiza', 'Japón', 'Argentina', 'Indonesia', 'Bangladesh', 'Barbados'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config3 = {
+            type: 'bar',
+            data: data3,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart3 = new Chart(
+            document.getElementById('modelsChart3'),
+            config3
+        );
+        //ORIGEN
+
+        //STATUS
+        //fetch block
+        function updateChart4() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenAM';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_preestado2;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart4.config.data.datasets[0].data = datos;
+                myChart4.update();
+            });
+        }
+        // setup 
+        const data4 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config4 = {
+            type: 'bar',
+            data: data4,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart4 = new Chart(
+            document.getElementById('modelsChart4'),
+            config4
+        );
+        //STATUS
+    </script>
+    <script>
+        window.reload
+        //ORIGEN
+        //fetch block
+        function updateChart5() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            var total15 = 0;
+            var total16 = 0;
+            var total17 = 0;
+            var total18 = 0;
+            var total19 = 0;
+            var total20 = 0;
+            var total21 = 0;
+            var total22 = 0;
+            var total23 = 0;
+            var total24 = 0;
+            var total25 = 0;
+            var total26 = 0;
+            var total27 = 0;
+            var total28 = 0;
+            var total29 = 0;
+            var total30 = 0;
+            var total31 = 0;
+            var total32 = 0;
+            var total33 = 0;
+            var total34 = 0;
+            var total35 = 0;
+            var total36 = 0;
+            var total37 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenAH';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const origen = datapoints.value.map(function (index) {
+                    return index.new_origen;
+                });
+                for (i = 0; i < origen.length; i++) {
+                    a.push(origen[i].toString())
+                }
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var o0 = [];
+                    var o1 = [];
+                    var o2 = [];
+                    var o3 = [];
+                    var o4 = [];
+                    var o5 = [];
+                    var o6 = [];
+                    var o7 = [];
+                    var o8 = [];
+                    var o9 = [];
+                    var o10 = [];
+                    var o11 = [];
+                    var o12 = [];
+                    var o13 = [];
+                    var o14 = [];
+                    var o15 = [];
+                    var o16 = [];
+                    var o17 = [];
+                    var o18 = [];
+                    var o19 = [];
+                    var o20 = [];
+                    var o21 = [];
+                    var o22 = [];
+                    var o23 = [];
+                    var o24 = [];
+                    var o25 = [];
+                    var o26 = [];
+                    var o27 = [];
+                    var o28 = [];
+                    var o29 = [];
+                    var o30 = [];
+                    var o31 = [];
+                    var o32 = [];
+                    var o33 = [];
+                    var o34 = [];
+                    var o35 = [];
+                    var o36 = [];
+                    var o37 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            o0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            o1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            o2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            o3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            o4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            o5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            o6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            o7.push(b);
+                            break;
+                        case '100000008':
+                            b++;
+                            o8.push(b);
+                            break;
+                        case '100000009':
+                            b++;
+                            o9.push(b);
+                            break;
+                        case '100000010':
+                            b++;
+                            o10.push(b);
+                            break;
+                        case '100000011':
+                            b++;
+                            o11.push(b);
+                            break;
+                        case '100000012':
+                            b++;
+                            o12.push(b);
+                            break;
+                        case '100000013':
+                            b++;
+                            o13.push(b);
+                            break;
+                        case '100000014':
+                            b++;
+                            o14.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            o15.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            o16.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            o17.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            o18.push(b);
+                            break;
+                        case '100000019':
+                            b++;
+                            o19.push(b);
+                            break;
+                        case '100000020':
+                            b++;
+                            o20.push(b);
+                            break;
+                        case '100000021':
+                            b++;
+                            o21.push(b);
+                            break;
+                        case '100000022':
+                            b++;
+                            o22.push(b);
+                            break;
+                        case '100000023':
+                            b++;
+                            o23.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            o24.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            o25.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            o26.push(b);
+                            break;
+                        case '100000027':
+                            b++;
+                            o27.push(b);
+                            break;
+                        case '100000028':
+                            b++;
+                            o28.push(b);
+                            break;
+                        case '100000029':
+                            b++;
+                            o29.push(b);
+                            break;
+                        case '100000030':
+                            b++;
+                            o30.push(b);
+                            break;
+                        case '100000031':
+                            b++;
+                            o31.push(b);
+                            break;
+                        case '100000032':
+                            b++;
+                            o32.push(b);
+                            break;
+                        case '100000033':
+                            b++;
+                            o33.push(b);
+                            break;
+                        case '100000034':
+                            b++;
+                            o34.push(b);
+                            break;
+                        case '100000035':
+                            b++;
+                            o35.push(b);
+                            break;
+                        case '100000036':
+                            b++;
+                            o36.push(b);
+                            break;
+                        case '100000037':
+                            b++;
+                            o37.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= o0.length; i++) {
+                        if (o0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += o0[i];
+                        }
+                    }
+                    for (var i = 0; i <= o1.length; i++) {
+                        if (o1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += o1[i];
+                        }
+                    }
+                    for (var i = 0; i <= o2.length; i++) {
+                        if (o2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += o2[i];
+                        }
+                    }
+                    for (var i = 0; i <= o3.length; i++) {
+                        if (o3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += o3[i];
+                        }
+                    }
+                    for (var i = 0; i <= o4.length; i++) {
+                        if (o4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += o4[i];
+                        }
+                    }
+                    for (var i = 0; i <= o5.length; i++) {
+                        if (o5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += o5[i];
+                        }
+                    }
+                    for (var i = 0; i <= o6.length; i++) {
+                        if (o6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += o6[i];
+                        }
+                    }
+                    for (var i = 0; i <= o7.length; i++) {
+                        if (o7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += o7[i];
+                        }
+                    }
+                    for (var i = 0; i <= o8.length; i++) {
+                        if (o8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += o8[i];
+                        }
+                    }
+                    for (var i = 0; i <= o9.length; i++) {
+                        if (o9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += o9[i];
+                        }
+                    }
+                    for (var i = 0; i <= o10.length; i++) {
+                        if (o10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += o10[i];
+                        }
+                    }
+                    for (var i = 0; i <= o11.length; i++) {
+                        if (o11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += o11[i];
+                        }
+                    }
+                    for (var i = 0; i <= o12.length; i++) {
+                        if (o12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += o12[i];
+                        }
+                    }
+                    for (var i = 0; i <= o13.length; i++) {
+                        if (o13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += o13[i];
+                        }
+                    }
+                    for (var i = 0; i <= o14.length; i++) {
+                        if (o14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += o14[i];
+                        }
+                    }
+                    for (var i = 0; i <= o15.length; i++) {
+                        if (o15[i] == null) {
+                            total15 += 0;
+                        }
+                        else {
+                            total15 += o15[i];
+                        }
+                    }
+                    for (var i = 0; i <= o16.length; i++) {
+                        if (o16[i] == null) {
+                            total16 += 0;
+                        }
+                        else {
+                            total16 += o16[i];
+                        }
+                    }
+                    for (var i = 0; i <= o17.length; i++) {
+                        if (o17[i] == null) {
+                            total17 += 0;
+                        }
+                        else {
+                            total17 += o17[i];
+                        }
+                    }
+                    for (var i = 0; i <= o18.length; i++) {
+                        if (o18[i] == null) {
+                            total18 += 0;
+                        }
+                        else {
+                            total18 += o18[i];
+                        }
+                    }
+                    for (var i = 0; i <= o19.length; i++) {
+                        if (o19[i] == null) {
+                            total19 += 0;
+                        }
+                        else {
+                            total19 += o19[i];
+                        }
+                    }
+                    for (var i = 0; i <= o20.length; i++) {
+                        if (o20[i] == null) {
+                            total20 += 0;
+                        }
+                        else {
+                            total20 += o20[i];
+                        }
+                    }
+                    for (var i = 0; i <= o21.length; i++) {
+                        if (o21[i] == null) {
+                            total21 += 0;
+                        }
+                        else {
+                            total21 += o21[i];
+                        }
+                    }
+                    for (var i = 0; i <= o22.length; i++) {
+                        if (o22[i] == null) {
+                            total22 += 0;
+                        }
+                        else {
+                            total22 += o22[i];
+                        }
+                    }
+                    for (var i = 0; i <= o23.length; i++) {
+                        if (o23[i] == null) {
+                            total23 += 0;
+                        }
+                        else {
+                            total23 += o23[i];
+                        }
+                    }
+                    for (var i = 0; i <= o24.length; i++) {
+                        if (o24[i] == null) {
+                            total24 += 0;
+                        }
+                        else {
+                            total24 += o24[i];
+                        }
+                    }
+                    for (var i = 0; i <= o25.length; i++) {
+                        if (o25[i] == null) {
+                            total25 += 0;
+                        }
+                        else {
+                            total25 += o25[i];
+                        }
+                    }
+                    for (var i = 0; i <= o26.length; i++) {
+                        if (o26[i] == null) {
+                            total26 += 0;
+                        }
+                        else {
+                            total26 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o27.length; i++) {
+                        if (o27[i] == null) {
+                            total27 += 0;
+                        }
+                        else {
+                            total27 += o27[i];
+                        }
+                    }
+                    for (var i = 0; i <= o28.length; i++) {
+                        if (o28[i] == null) {
+                            total28 += 0;
+                        }
+                        else {
+                            total28 += o28[i];
+                        }
+                    }
+                    for (var i = 0; i <= o29.length; i++) {
+                        if (o29[i] == null) {
+                            total29 += 0;
+                        }
+                        else {
+                            total29 += o29[i];
+                        }
+                    }
+                    for (var i = 0; i <= o30.length; i++) {
+                        if (o30[i] == null) {
+                            total30 += 0;
+                        }
+                        else {
+                            total30 += o30[i];
+                        }
+                    }
+                    for (var i = 0; i <= o31.length; i++) {
+                        if (o31[i] == null) {
+                            total31 += 0;
+                        }
+                        else {
+                            total31 += o31[i];
+                        }
+                    }
+                    for (var i = 0; i <= o32.length; i++) {
+                        if (o32[i] == null) {
+                            total32 += 0;
+                        }
+                        else {
+                            total32 += o32[i];
+                        }
+                    }
+                    for (var i = 0; i <= o33.length; i++) {
+                        if (o33[i] == null) {
+                            total33 += 0;
+                        }
+                        else {
+                            total33 += o33[i];
+                        }
+                    }
+                    for (var i = 0; i <= o34.length; i++) {
+                        if (o34[i] == null) {
+                            total34 += 0;
+                        }
+                        else {
+                            total34 += o34[i];
+                        }
+                    }
+                    for (var i = 0; i <= o35.length; i++) {
+                        if (o35[i] == null) {
+                            total35 += 0;
+                        }
+                        else {
+                            total35 += o35[i];
+                        }
+                    }
+                    for (var i = 0; i <= o36.length; i++) {
+                        if (o36[i] == null) {
+                            total36 += 0;
+                        }
+                        else {
+                            total36 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o37.length; i++) {
+                        if (o37[i] == null) {
+                            total37 += 0;
+                        }
+                        else {
+                            total37 += o37[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14, total15, total16, total17, total18, total19, total20, total21, total22, total23, total24, total25, total26, total27, total28, total29, total30, total31, total32, total33, total34, total35, total36, total37)
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart5.config.data.datasets[0].data = datos;
+                myChart5.update();
+            });
+        }
+        // setup 
+        const data5 = {
+            labels: ['USA', 'China', 'Guatemala', 'Thailandia', 'India', 'Ecuador', 'Chile', 'Colombia', 'Costa Rica', 'México', 'Italia', 'Korea', 'Turquía', 'España', 'San José, Costa Rica', 'Vietnam', 'Holanda', 'Canadá', 'Panamá', 'El Salvador', 'Alemania', 'Nicaragua', 'Portugal', 'Francia', 'Perú', 'Honduras', 'Sudáfrica', 'Brasil', 'Taiwan', 'Polonia', 'Emiratos Arabes', 'Suiza', 'Japón', 'Argentina', 'Indonesia', 'Bangladesh', 'Barbados'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config5 = {
+            type: 'bar',
+            data: data5,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart5 = new Chart(
+            document.getElementById('modelsChart5'),
+            config5
+        );
+        //ORIGEN
+
+        //STATUS
+        //fetch block
+        function updateChart6() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenAH';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_preestado2;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart6.config.data.datasets[0].data = datos;
+                myChart6.update();
+            });
+        }
+        // setup 
+        const data6 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config6 = {
+            type: 'bar',
+            data: data6,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart6 = new Chart(
+            document.getElementById('modelsChart6'),
+            config6
+        );
+        //STATUS
+    </script>
+    <script>
+        window.reload
+        //ORIGEN
+        //fetch block
+        function updateChart7() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            var total15 = 0;
+            var total16 = 0;
+            var total17 = 0;
+            var total18 = 0;
+            var total19 = 0;
+            var total20 = 0;
+            var total21 = 0;
+            var total22 = 0;
+            var total23 = 0;
+            var total24 = 0;
+            var total25 = 0;
+            var total26 = 0;
+            var total27 = 0;
+            var total28 = 0;
+            var total29 = 0;
+            var total30 = 0;
+            var total31 = 0;
+            var total32 = 0;
+            var total33 = 0;
+            var total34 = 0;
+            var total35 = 0;
+            var total36 = 0;
+            var total37 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenDS';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const origen = datapoints.value.map(function (index) {
+                    return index.new_origen;
+                });
+                for (i = 0; i < origen.length; i++) {
+                    a.push(origen[i].toString())
+                }
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var o0 = [];
+                    var o1 = [];
+                    var o2 = [];
+                    var o3 = [];
+                    var o4 = [];
+                    var o5 = [];
+                    var o6 = [];
+                    var o7 = [];
+                    var o8 = [];
+                    var o9 = [];
+                    var o10 = [];
+                    var o11 = [];
+                    var o12 = [];
+                    var o13 = [];
+                    var o14 = [];
+                    var o15 = [];
+                    var o16 = [];
+                    var o17 = [];
+                    var o18 = [];
+                    var o19 = [];
+                    var o20 = [];
+                    var o21 = [];
+                    var o22 = [];
+                    var o23 = [];
+                    var o24 = [];
+                    var o25 = [];
+                    var o26 = [];
+                    var o27 = [];
+                    var o28 = [];
+                    var o29 = [];
+                    var o30 = [];
+                    var o31 = [];
+                    var o32 = [];
+                    var o33 = [];
+                    var o34 = [];
+                    var o35 = [];
+                    var o36 = [];
+                    var o37 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            o0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            o1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            o2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            o3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            o4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            o5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            o6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            o7.push(b);
+                            break;
+                        case '100000008':
+                            b++;
+                            o8.push(b);
+                            break;
+                        case '100000009':
+                            b++;
+                            o9.push(b);
+                            break;
+                        case '100000010':
+                            b++;
+                            o10.push(b);
+                            break;
+                        case '100000011':
+                            b++;
+                            o11.push(b);
+                            break;
+                        case '100000012':
+                            b++;
+                            o12.push(b);
+                            break;
+                        case '100000013':
+                            b++;
+                            o13.push(b);
+                            break;
+                        case '100000014':
+                            b++;
+                            o14.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            o15.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            o16.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            o17.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            o18.push(b);
+                            break;
+                        case '100000019':
+                            b++;
+                            o19.push(b);
+                            break;
+                        case '100000020':
+                            b++;
+                            o20.push(b);
+                            break;
+                        case '100000021':
+                            b++;
+                            o21.push(b);
+                            break;
+                        case '100000022':
+                            b++;
+                            o22.push(b);
+                            break;
+                        case '100000023':
+                            b++;
+                            o23.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            o24.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            o25.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            o26.push(b);
+                            break;
+                        case '100000027':
+                            b++;
+                            o27.push(b);
+                            break;
+                        case '100000028':
+                            b++;
+                            o28.push(b);
+                            break;
+                        case '100000029':
+                            b++;
+                            o29.push(b);
+                            break;
+                        case '100000030':
+                            b++;
+                            o30.push(b);
+                            break;
+                        case '100000031':
+                            b++;
+                            o31.push(b);
+                            break;
+                        case '100000032':
+                            b++;
+                            o32.push(b);
+                            break;
+                        case '100000033':
+                            b++;
+                            o33.push(b);
+                            break;
+                        case '100000034':
+                            b++;
+                            o34.push(b);
+                            break;
+                        case '100000035':
+                            b++;
+                            o35.push(b);
+                            break;
+                        case '100000036':
+                            b++;
+                            o36.push(b);
+                            break;
+                        case '100000037':
+                            b++;
+                            o37.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= o0.length; i++) {
+                        if (o0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += o0[i];
+                        }
+                    }
+                    for (var i = 0; i <= o1.length; i++) {
+                        if (o1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += o1[i];
+                        }
+                    }
+                    for (var i = 0; i <= o2.length; i++) {
+                        if (o2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += o2[i];
+                        }
+                    }
+                    for (var i = 0; i <= o3.length; i++) {
+                        if (o3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += o3[i];
+                        }
+                    }
+                    for (var i = 0; i <= o4.length; i++) {
+                        if (o4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += o4[i];
+                        }
+                    }
+                    for (var i = 0; i <= o5.length; i++) {
+                        if (o5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += o5[i];
+                        }
+                    }
+                    for (var i = 0; i <= o6.length; i++) {
+                        if (o6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += o6[i];
+                        }
+                    }
+                    for (var i = 0; i <= o7.length; i++) {
+                        if (o7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += o7[i];
+                        }
+                    }
+                    for (var i = 0; i <= o8.length; i++) {
+                        if (o8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += o8[i];
+                        }
+                    }
+                    for (var i = 0; i <= o9.length; i++) {
+                        if (o9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += o9[i];
+                        }
+                    }
+                    for (var i = 0; i <= o10.length; i++) {
+                        if (o10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += o10[i];
+                        }
+                    }
+                    for (var i = 0; i <= o11.length; i++) {
+                        if (o11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += o11[i];
+                        }
+                    }
+                    for (var i = 0; i <= o12.length; i++) {
+                        if (o12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += o12[i];
+                        }
+                    }
+                    for (var i = 0; i <= o13.length; i++) {
+                        if (o13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += o13[i];
+                        }
+                    }
+                    for (var i = 0; i <= o14.length; i++) {
+                        if (o14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += o14[i];
+                        }
+                    }
+                    for (var i = 0; i <= o15.length; i++) {
+                        if (o15[i] == null) {
+                            total15 += 0;
+                        }
+                        else {
+                            total15 += o15[i];
+                        }
+                    }
+                    for (var i = 0; i <= o16.length; i++) {
+                        if (o16[i] == null) {
+                            total16 += 0;
+                        }
+                        else {
+                            total16 += o16[i];
+                        }
+                    }
+                    for (var i = 0; i <= o17.length; i++) {
+                        if (o17[i] == null) {
+                            total17 += 0;
+                        }
+                        else {
+                            total17 += o17[i];
+                        }
+                    }
+                    for (var i = 0; i <= o18.length; i++) {
+                        if (o18[i] == null) {
+                            total18 += 0;
+                        }
+                        else {
+                            total18 += o18[i];
+                        }
+                    }
+                    for (var i = 0; i <= o19.length; i++) {
+                        if (o19[i] == null) {
+                            total19 += 0;
+                        }
+                        else {
+                            total19 += o19[i];
+                        }
+                    }
+                    for (var i = 0; i <= o20.length; i++) {
+                        if (o20[i] == null) {
+                            total20 += 0;
+                        }
+                        else {
+                            total20 += o20[i];
+                        }
+                    }
+                    for (var i = 0; i <= o21.length; i++) {
+                        if (o21[i] == null) {
+                            total21 += 0;
+                        }
+                        else {
+                            total21 += o21[i];
+                        }
+                    }
+                    for (var i = 0; i <= o22.length; i++) {
+                        if (o22[i] == null) {
+                            total22 += 0;
+                        }
+                        else {
+                            total22 += o22[i];
+                        }
+                    }
+                    for (var i = 0; i <= o23.length; i++) {
+                        if (o23[i] == null) {
+                            total23 += 0;
+                        }
+                        else {
+                            total23 += o23[i];
+                        }
+                    }
+                    for (var i = 0; i <= o24.length; i++) {
+                        if (o24[i] == null) {
+                            total24 += 0;
+                        }
+                        else {
+                            total24 += o24[i];
+                        }
+                    }
+                    for (var i = 0; i <= o25.length; i++) {
+                        if (o25[i] == null) {
+                            total25 += 0;
+                        }
+                        else {
+                            total25 += o25[i];
+                        }
+                    }
+                    for (var i = 0; i <= o26.length; i++) {
+                        if (o26[i] == null) {
+                            total26 += 0;
+                        }
+                        else {
+                            total26 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o27.length; i++) {
+                        if (o27[i] == null) {
+                            total27 += 0;
+                        }
+                        else {
+                            total27 += o27[i];
+                        }
+                    }
+                    for (var i = 0; i <= o28.length; i++) {
+                        if (o28[i] == null) {
+                            total28 += 0;
+                        }
+                        else {
+                            total28 += o28[i];
+                        }
+                    }
+                    for (var i = 0; i <= o29.length; i++) {
+                        if (o29[i] == null) {
+                            total29 += 0;
+                        }
+                        else {
+                            total29 += o29[i];
+                        }
+                    }
+                    for (var i = 0; i <= o30.length; i++) {
+                        if (o30[i] == null) {
+                            total30 += 0;
+                        }
+                        else {
+                            total30 += o30[i];
+                        }
+                    }
+                    for (var i = 0; i <= o31.length; i++) {
+                        if (o31[i] == null) {
+                            total31 += 0;
+                        }
+                        else {
+                            total31 += o31[i];
+                        }
+                    }
+                    for (var i = 0; i <= o32.length; i++) {
+                        if (o32[i] == null) {
+                            total32 += 0;
+                        }
+                        else {
+                            total32 += o32[i];
+                        }
+                    }
+                    for (var i = 0; i <= o33.length; i++) {
+                        if (o33[i] == null) {
+                            total33 += 0;
+                        }
+                        else {
+                            total33 += o33[i];
+                        }
+                    }
+                    for (var i = 0; i <= o34.length; i++) {
+                        if (o34[i] == null) {
+                            total34 += 0;
+                        }
+                        else {
+                            total34 += o34[i];
+                        }
+                    }
+                    for (var i = 0; i <= o35.length; i++) {
+                        if (o35[i] == null) {
+                            total35 += 0;
+                        }
+                        else {
+                            total35 += o35[i];
+                        }
+                    }
+                    for (var i = 0; i <= o36.length; i++) {
+                        if (o36[i] == null) {
+                            total36 += 0;
+                        }
+                        else {
+                            total36 += o36[i];
+                        }
+                    }
+                    for (var i = 0; i <= o37.length; i++) {
+                        if (o37[i] == null) {
+                            total37 += 0;
+                        }
+                        else {
+                            total37 += o37[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14, total15, total16, total17, total18, total19, total20, total21, total22, total23, total24, total25, total26, total27, total28, total29, total30, total31, total32, total33, total34, total35, total36, total37)
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart7.config.data.datasets[0].data = datos;
+                myChart7.update();
+            });
+        }
+        // setup 
+        const data7 = {
+            labels: ['USA', 'China', 'Guatemala', 'Thailandia', 'India', 'Ecuador', 'Chile', 'Colombia', 'Costa Rica', 'México', 'Italia', 'Korea', 'Turquía', 'España', 'San José, Costa Rica', 'Vietnam', 'Holanda', 'Canadá', 'Panamá', 'El Salvador', 'Alemania', 'Nicaragua', 'Portugal', 'Francia', 'Perú', 'Honduras', 'Sudáfrica', 'Brasil', 'Taiwan', 'Polonia', 'Emiratos Arabes', 'Suiza', 'Japón', 'Argentina', 'Indonesia', 'Bangladesh', 'Barbados'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config7 = {
+            type: 'bar',
+            data: data7,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart7 = new Chart(
+            document.getElementById('modelsChart7'),
+            config7
+        );
+        //ORIGEN
+
+        //STATUS
+        //fetch block
+        function updateChart8() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/TramitesOrigenDS';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_preestado2;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart8.config.data.datasets[0].data = datos;
+                myChart8.update();
+            });
+        }
+        // setup 
+        const data8 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config8 = {
+            type: 'bar',
+            data: data8,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart8 = new Chart(
+            document.getElementById('modelsChart8'),
+            config8
+        );
+        //STATUS
+    </script>
+    <script>
+        window.reload
+        //STATUS
+        //fetch block
+        function updateChart9() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/DatosCertificados';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_preestado2;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart9.config.data.datasets[0].data = datos;
+                myChart9.update();
+            });
+        }
+        // setup 
+        const data9 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config9 = {
+            type: 'bar',
+            data: data9,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart9 = new Chart(
+            document.getElementById('certificadoChart'),
+            config9
+        );
+        //STATUS
+
+        //STATUS
+        //fetch block
+        function updateChart10() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/DatosCertificados';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index.new_statusdecertificado;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000008':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9)
+                console.log(datos.toString());
+
+                //myChart.config.data.labels = [...new Set(origen)].sort();
+                myChart10.config.data.datasets[0].data = datos;
+                myChart10.update();
+            });
+        }
+        // setup 
+        const data10 = {
+            labels: ['Pendiente de Solicitar', 'Pendiente de Aprobación SIGA', 'En Tramite Boleta Banco', 'Aprobado en SIGA', 'En Firmas ZOLICOL', 'En Firmas Aduana', 'Aprobado y Listo - HUB Panamá', 'Scanner Enviado', 'Original Entregado y Finalizado'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config10 = {
+            type: 'bar',
+            data: data10,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart10 = new Chart(
+            document.getElementById('certificadoChart2'),
+            config10
+        );
+        //STATUS
+    </script>
+    <!--<script>
+        window.reload
+        //STATUS
+        //fetch block
+        function updateChart11() {
+            var a = [];
+            var total0 = 0;
+            var total1 = 0;
+            var total2 = 0;
+            var total3 = 0;
+            var total4 = 0;
+            var total5 = 0;
+            var total6 = 0;
+            var total7 = 0;
+            var total8 = 0;
+            var total9 = 0;
+            var total10 = 0;
+            var total11 = 0;
+            var total12 = 0;
+            var total13 = 0;
+            var total14 = 0;
+            let datos = [];
+            async function fetchData() {
+                const url = 'https://dynamicscf.azurewebsites.net/dynamics/DatosCertificados';
+                const response = await fetch(url);
+
+                const datapoints = await response.json();
+                return datapoints;
+            };
+
+            fetchData().then(datapoints => {
+                const status = datapoints.value.map(function (index) {
+                    return index._customerid_value;
+                });
+                const datosc = datapoints.value.map(function (index) {
+                    return index.title;
+                });
+                for (i = 0; i < status.length; i++) {
+                    a.push(status[i].toString())
+                }
+                console.log(a.toString())
+                a.forEach(myFun);
+
+                function myFun(item) {
+                    var s0 = [];
+                    var s1 = [];
+                    var s2 = [];
+                    var s3 = [];
+                    var s4 = [];
+                    var s5 = [];
+                    var s6 = [];
+                    var s7 = [];
+                    var s8 = [];
+                    var s9 = [];
+                    var s10 = [];
+                    var s11 = [];
+                    var s12 = [];
+                    var s13 = [];
+                    var s14 = [];
+                    var b = 0;
+
+                    switch (item) {
+                        case '100000000':
+                            b++;
+                            s0.push(b);
+                            break;
+                        case '100000001':
+                            b++;
+                            s1.push(b);
+                            break;
+                        case '100000002':
+                            b++;
+                            s2.push(b);
+                            break;
+                        case '100000003':
+                            b++;
+                            s3.push(b);
+                            break;
+                        case '100000004':
+                            b++;
+                            s4.push(b);
+                            break;
+                        case '100000005':
+                            b++;
+                            s5.push(b);
+                            break;
+                        case '100000006':
+                            b++;
+                            s6.push(b);
+                            break;
+                        case '100000007':
+                            b++;
+                            s7.push(b);
+                            break;
+                        case '100000015':
+                            b++;
+                            s8.push(b);
+                            break;
+                        case '100000016':
+                            b++;
+                            s9.push(b);
+                            break;
+                        case '100000017':
+                            b++;
+                            s10.push(b);
+                            break;
+                        case '100000018':
+                            b++;
+                            s11.push(b);
+                            break;
+                        case '100000024':
+                            b++;
+                            s12.push(b);
+                            break;
+                        case '100000025':
+                            b++;
+                            s13.push(b);
+                            break;
+                        case '100000026':
+                            b++;
+                            s14.push(b);
+                            break;
+                    }
+
+                    for (var i = 0; i <= s0.length; i++) {
+                        if (s0[i] == null) {
+                            total0 += 0;
+                        }
+                        else {
+                            total0 += s0[i];
+                        }
+                    }
+                    for (var i = 0; i <= s1.length; i++) {
+                        if (s1[i] == null) {
+                            total1 += 0;
+                        }
+                        else {
+                            total1 += s1[i];
+                        }
+                    }
+                    for (var i = 0; i <= s2.length; i++) {
+                        if (s2[i] == null) {
+                            total2 += 0;
+                        }
+                        else {
+                            total2 += s2[i];
+                        }
+                    }
+                    for (var i = 0; i <= s3.length; i++) {
+                        if (s3[i] == null) {
+                            total3 += 0;
+                        }
+                        else {
+                            total3 += s3[i];
+                        }
+                    }
+                    for (var i = 0; i <= s4.length; i++) {
+                        if (s4[i] == null) {
+                            total4 += 0;
+                        }
+                        else {
+                            total4 += s4[i];
+                        }
+                    }
+                    for (var i = 0; i <= s5.length; i++) {
+                        if (s5[i] == null) {
+                            total5 += 0;
+                        }
+                        else {
+                            total5 += s5[i];
+                        }
+                    }
+                    for (var i = 0; i <= s6.length; i++) {
+                        if (s6[i] == null) {
+                            total6 += 0;
+                        }
+                        else {
+                            total6 += s6[i];
+                        }
+                    }
+                    for (var i = 0; i <= s7.length; i++) {
+                        if (s7[i] == null) {
+                            total7 += 0;
+                        }
+                        else {
+                            total7 += s7[i];
+                        }
+                    }
+                    for (var i = 0; i <= s8.length; i++) {
+                        if (s8[i] == null) {
+                            total8 += 0;
+                        }
+                        else {
+                            total8 += s8[i];
+                        }
+                    }
+                    for (var i = 0; i <= s9.length; i++) {
+                        if (s9[i] == null) {
+                            total9 += 0;
+                        }
+                        else {
+                            total9 += s9[i];
+                        }
+                    }
+                    for (var i = 0; i <= s10.length; i++) {
+                        if (s10[i] == null) {
+                            total10 += 0;
+                        }
+                        else {
+                            total10 += s10[i];
+                        }
+                    }
+                    for (var i = 0; i <= s11.length; i++) {
+                        if (s11[i] == null) {
+                            total11 += 0;
+                        }
+                        else {
+                            total11 += s11[i];
+                        }
+                    }
+                    for (var i = 0; i <= s12.length; i++) {
+                        if (s12[i] == null) {
+                            total12 += 0;
+                        }
+                        else {
+                            total12 += s12[i];
+                        }
+                    }
+                    for (var i = 0; i <= s13.length; i++) {
+                        if (s13[i] == null) {
+                            total13 += 0;
+                        }
+                        else {
+                            total13 += s13[i];
+                        }
+                    }
+                    for (var i = 0; i <= s14.length; i++) {
+                        if (s14[i] == null) {
+                            total14 += 0;
+                        }
+                        else {
+                            total14 += s14[i];
+                        }
+                    }
+                }
+                datos.push(total0, total1, total2, total3, total4, total5, total6, total7, total8, total9, total10, total11, total12, total13, total14)
+                console.log(datos.toString());
+
+                myChart11.config.data.labels = [...new Set(status)].sort();
+                myChart11.config.data.datasets[0].data = datosc;
+                myChart11.update();
+            });
+        }
+        // setup 
+        const data11 = {
+            labels: ['Coordinación Origen', 'Booking Listo', 'En Transito', 'Carga en Pto.Entrada', 'Carga en Almacen DESTINO', 'Tramite Aduanas', 'Pago Pendiente', 'Colocación CRC', 'Carga Bodega Miami', 'Esperando Factura', 'Preparando Envio', 'Ruta Entrega', 'Movimiento Panamá to CRC', 'Carga Bodega CFS Panamá', 'Carga en Bodega HUB Panamá'],
+            datasets: [{
+                label: 'Casos',
+                //data: [18, 12, 6, 9, 12, 3, 9],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(0, 0, 0, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config 
+        const config11 = {
+            type: 'bar',
+            data: data11,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart11 = new Chart(
+            document.getElementById('colocacionesChart'),
+            config8
+        );
+        //STATUS
+    </script> -->
+</body>
+
+</html>
